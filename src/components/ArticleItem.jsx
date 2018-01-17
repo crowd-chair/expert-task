@@ -45,8 +45,8 @@ class ArticleItem extends Component {
     return colorMaps[index];
   };
 
-  addOrUpdateCorrection = () => {
-    const correction = new Correction(this.state);
+  addOrUpdateCorrection = state => {
+    const correction = new Correction(state);
     this.props.addCorrection({ correction });
   };
 
@@ -60,22 +60,24 @@ class ArticleItem extends Component {
     if (nextColorIndex === this.state.groupSizeMax + 1) {
       nextColorIndex = 0;
     }
-    this.setState({
+    const nextState = {
       ...this.state,
       group: nextColorIndex,
-    });
-    this.addOrUpdateCorrection();
+    };
+    this.addOrUpdateCorrection(nextState);
+    this.setState(nextState);
   };
 
   toggleNoMatching = e => {
     e.preventDefault();
     e.stopPropagation();
-    this.setState({
+    const nextState = {
       ...this.state,
       group: 0,
       noMatching: !this.state.noMatching,
-    });
-    this.addOrUpdateCorrection();
+    };
+    this.addOrUpdateCorrection(nextState);
+    this.setState(nextState);
   };
 
   render() {

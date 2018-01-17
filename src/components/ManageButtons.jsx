@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Icon } from "semantic-ui-react";
-import $ from "jquery";
+import { submit } from "../libs/submit";
 import "./ManageButtons.css";
 
 class ManageButtons extends Component {
   onClick = () => {
-    console.log(this.props.corrections);
+    const { corrections } = this.props;
+    const object = corrections.map(correction => correction.toObject()).toJS();
+    console.log(object);
+
+    submit(object);
   };
 
   render() {
