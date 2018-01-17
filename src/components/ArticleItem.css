@@ -1,0 +1,16 @@
+.article-label {
+  margin: 5px;
+  user-select: none;
+  position: relative;
+}
+
+.inner-article-label {
+  width: 100%;
+  padding-right: 30px !important;
+}
+
+.cancel-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
