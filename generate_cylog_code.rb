@@ -1,7 +1,13 @@
-// Bidding Task(セッションへの投票タスク)
-// created:     2017.08.02 by kobayang
-// lastupdated: 2017.12.01 by kobayang
+VERSION = ARGV[0]
+SEED = 100
 
+if VERSION.nil? || VERSION.empty? || !VERSION.match(/^v\d+$/)
+  raise "VERSION must be v[0-9]+"
+  exit(1)
+end
+
+SEED_CODE = SEED.times.map {"TaskSeeds();"}.join(" ")
+CYLOG_CODE = <<EOS
 //////////////////////////////////////////////////
 Schema:
   TaskSeeds(
@@ -11,6 +17,7 @@ Schema:
   FeedBackStore(
     tid           int;
     corrections   text; // 投票されたセッションの結果
+    tag           text; // セッションのバージョン
     uid           char(32); // ワーカーのID
   )key(tid);
 
@@ -21,19 +28,10 @@ Schema:
 
 //////////////////////////////////////////////////
 Rules:
-  // 10個シードを用意する
-  TaskSeeds();
-  TaskSeeds();
-  TaskSeeds();
-  TaskSeeds();
-  TaskSeeds();
-  TaskSeeds();
-  TaskSeeds();
-  TaskSeeds();
-  TaskSeeds();
-  TaskSeeds();
+  // #{SEED}個シードを用意する
+  #{SEED_CODE}
 
-  FeedBackStore(tid, uid, corrections)/open <-
+  FeedBackStore(tid, uid, tag, corrections)/open <-
     TaskSeeds(tid);
 
   !FeedBackTask(_open_fact_id, tid) <-
@@ -46,10 +44,15 @@ Rules:
 Views:
   !FeedBackTask(_open_fact_id, tid) {
     <div>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
+      <link rel="stylesheet" href="//oahu.slis.tsukuba.ac.jp/nkobayashi/feedback/#{VERSION}/main.css" />
+      <script src="//oahu.slis.tsukuba.ac.jp/nkobayashi/feedback/#{VERSION}/main.js"></script>
       <div id='app-root'></div>
 
-      <form fact=BiddingStore(tid, corrections, uid, _open_fact_id) move=!Thanks() name='store'>
+      <form fact=FeedBackStore(tid, corrections, tag, uid, _open_fact_id) move=!Thanks() name='store'>
         <input type='hidden' name='tid' />
+        <input type='hidden' name='tag' />
         <input type='hidden' name='corrections' />
         <input type='hidden' name='uid' />
       </form>
@@ -62,8 +65,13 @@ Views:
       <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.11/semantic.min.js" integrity="sha256-Wl7niWgEJX3PdPn8lBzIDCWO1FBCYExjQihbT4ldMok=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
-      <script src="https://oahu.slis.tsukuba.ac.jp/nkobayashi/thanks.js"></script>
+      <script src="//oahu.slis.tsukuba.ac.jp/nkobayashi/thanks.js"></script>
 
       <div id='app-root'></div>
     </div>
   }
+EOS
+
+File.open("cylogs/feedback_task_#{VERSION}.cylog", "w") do |file|
+  file << CYLOG_CODE
+end

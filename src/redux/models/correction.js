@@ -11,7 +11,7 @@ const CorrectionRecord = Record({
 
 export default class Correction extends CorrectionRecord {
   toObject = () => ({
-    session_name: this.sessionName.id,
+    sessionName: this.sessionName.id,
     article: this.article.id,
     group: this.group,
     noMatching: this.noMatching,

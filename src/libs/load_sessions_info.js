@@ -2,6 +2,8 @@ import sessionData from "../sessions.json";
 import { List } from "immutable";
 import { Article, SessionName, Session } from "../redux/models";
 
+const tag = sessionData.tag;
+
 const articles = List(
   sessionData.articles.map(data => {
     return new Article({
@@ -37,4 +39,4 @@ const sessions = List(
   })
 );
 
-export { articles, sessionNames, sessions };
+export { tag, articles, sessionNames, sessions };

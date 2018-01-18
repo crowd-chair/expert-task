@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Segment, Header, Image } from "semantic-ui-react";
-import img_01 from "../assets/01.png";
-import img_02 from "../assets/02.png";
-import img_03 from "../assets/03.png";
+// [NOTE] Using imgs from oahu server
+// import img_01 from "../assets/01.png";
+// import img_02 from "../assets/02.png";
+// import img_03 from "../assets/03.png";
 import s from "./QuestionComponent.css";
+
+const path = "https://oahu.slis.tsukuba.ac.jp/nkobayashi/feedback/assets";
 
 class QuestionComponent extends Component {
   render() {
@@ -17,7 +20,7 @@ class QuestionComponent extends Component {
           <p>以下の作業を行っていただきます．</p>
           <p>(1) 各セッション内で発表が適していない論文の選択</p>
           <div className="explain not-matching-paper">
-            <Image src={img_01} fluid />
+            <Image src={`${path}/01.png`} fluid />
             <p>
               論文タイトルラベルの☓ボタンをクリックするとで打ち消し線が表示されます．<br />
               この状態は，枠内のセッションでその論文が適していないことを表しています．
@@ -25,11 +28,11 @@ class QuestionComponent extends Component {
           </div>
           <p>(2) 各セッション内で論文のグルーピング</p>
           <div className="explain grouing">
-            <Image src={img_02} fluid />
+            <Image src={`${path}/02.png`} fluid />
             <p>論文タイトルラベルをクリックするとラベルの色を変更できます．</p>
           </div>
           <div className="explain grouing">
-            <Image src={img_03} fluid />
+            <Image src={`${path}/03.png`} fluid />
             <p>
               セッション内の論文で色を揃えることでグルーピングを行います．<br />
               色は全部で3色あります（オレンジ,　黄色，オリーブ）． <br />
