@@ -1,24 +1,20 @@
-import sessionData from "../sessions.json";
+import sessionData from "../data/sessions.json";
+import articleData from "../data/articles.json";
+import sessionNameData from "../data/sessionNames.json";
 import { List } from "immutable";
 import { Article, SessionName, Session } from "../redux/models";
 
 const tag = sessionData.tag;
 
 const articles = List(
-  sessionData.articles.map(data => {
-    return new Article({
-      id: data.id,
-      name: data.name,
-    });
+  articleData.articles.map(data => {
+    return new Article(data);
   })
 );
 
 const sessionNames = List(
-  sessionData.session_names.map(data => {
-    return new SessionName({
-      id: data.id,
-      name: data.name,
-    });
+  sessionNameData.sessionNames.map(data => {
+    return new SessionName(data);
   })
 );
 
@@ -38,5 +34,7 @@ const sessions = List(
     });
   })
 );
+
+console.log(articles);
 
 export { tag, articles, sessionNames, sessions };

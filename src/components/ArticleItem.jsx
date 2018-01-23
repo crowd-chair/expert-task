@@ -6,6 +6,7 @@ import { correctionActions } from "../redux/modules/correction";
 import { Correction } from "../redux/models";
 import { Label, Icon } from "semantic-ui-react";
 import "./ArticleItem.css";
+import ModalBiddingComponent from "./ModalBiddingComponent";
 
 class ArticleItem extends Component {
   state = {
@@ -92,7 +93,7 @@ class ArticleItem extends Component {
           style={decorationLabel}
         >
           {article.name}
-          <Icon className="cancel-button" onClick={this.toggleNoMatching} name="delete" size="small" />
+          <ModalBiddingComponent article={article} />
         </Label>
       </div>
     );

@@ -20,17 +20,25 @@ class SessionNameList extends Component {
     return (
       <div className="base">
         <Grid columns={columns}>
-          {sessionNames.map(sessionName => {
-            const articles = sessions
-              .filter(session => session.sessionName === sessionName)
-              .map(session => session.articles)
-              .flatten(true);
-            return (
-              <Grid.Column key={`ArticleList-${sessionName.id}`}>
-                <ArticleList sessionName={sessionName} articles={articles} />
-              </Grid.Column>
-            );
-          })}
+          {sessionNames
+            .filter(sessionName => {
+              const articles = sessions
+                .filter(session => session.sessionName === sessionName)
+                .map(session => session.articles)
+                .flatten(true);
+              return articles.size !== 0;
+            })
+            .map(sessionName => {
+              const articles = sessions
+                .filter(session => session.sessionName === sessionName)
+                .map(session => session.articles)
+                .flatten(true);
+              return (
+                <Grid.Column key={`ArticleList-${sessionName.id}`}>
+                  <ArticleList sessionName={sessionName} articles={articles} />
+                </Grid.Column>
+              );
+            })}
         </Grid>
       </div>
     );
