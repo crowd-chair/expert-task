@@ -9,8 +9,8 @@
   padding-right: 30px !important;
 }
 
-.cancel-button {
+.trigger-button {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  margin: auto 0;
+  right: 0;
 }

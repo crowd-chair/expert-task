@@ -6,11 +6,14 @@ import "./ManageButtons.css";
 
 class ManageButtons extends Component {
   onClick = () => {
-    const { corrections } = this.props;
-    const object = corrections.map(correction => correction.toObject()).toJS();
-    console.log(object);
+    const { corrections, biddings } = this.props;
+    const correctionsJS = corrections.map(correction => correction.toObject()).toJS();
+    const biddingsJS = biddings.toArray();
 
-    submit(object);
+    submit({
+      corrections: correctionsJS,
+      biddings: biddingsJS,
+    });
   };
 
   render() {
@@ -26,6 +29,7 @@ class ManageButtons extends Component {
 
 const mapStateToProps = state => ({
   corrections: state.correction.corrections,
+  biddings: state.correction.biddings,
 });
 
 export default connect(mapStateToProps)(ManageButtons);
