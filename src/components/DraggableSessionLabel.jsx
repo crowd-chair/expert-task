@@ -23,8 +23,9 @@ class DraggableSessionLabel extends Component {
   render() {
     const { sessionName } = this.props;
     const labelKey = `sessionName-${sessionName.id}`;
+    const color = sessionName.isNewSession ? "yellow" : "";
     return this.props.connectDragSource(
-      <div className="ui session label draggable" key={labelKey} id={labelKey} draggable="true">
+      <div className={`ui session label draggable ${color}`} key={labelKey} id={labelKey} draggable="true">
         {sessionName.name}
       </div>
     );

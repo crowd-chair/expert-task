@@ -15,6 +15,9 @@ class BiddingComponent extends Component {
     return (
       <div className="bidding task page">
         <div className="ui container main">
+          <div className="question header">
+            <h3>次の投稿に対して，著者が希望したセッションを，指示に従い修正してください．</h3>
+          </div>
           <div className="ui segment">
             <div className="ui top attached label">投稿内容</div>
             <div className="content">
@@ -37,16 +40,19 @@ class BiddingComponent extends Component {
             </div>
           </div>
           <section className="question">
-            <div className="question header">
-              <p>
-                セッションリストの中から発表投稿に関連するセッションを、関連度の高いものから順に
-                ドラッグ&ドロップで入れてください。 <br />
-                <b>
-                  できるだけ多くの欄にセッションを入れてください．
-                  タスクが終了した場合，「保存する」を押してください．保存せずに戻る場合は「キャンセル」を押してください．
-                </b>
-              </p>
-            </div>
+            <h3>修正方法</h3>
+            <p>
+              セッションリストの中から発表論文に関連するセッションを、関連度の高いものから順に
+              ドラッグ&ドロップで入れてください。セッションは右に戻すこともできます． <br />
+              <b>
+                当てはまるセッションがあればすべて投票してください．
+                黄色のセッションはプログラム委員長により新たに追加されたセッションです．優先して投票してください．
+              </b>
+              <br />
+              <b>
+                タスクが終了した場合，「保存する」を押してください．保存せずに戻る場合は「キャンセル」を押してください．
+              </b>
+            </p>
             <div className="sessions section">
               <div className="ui stackable grid">
                 <div id="related-session-pool" className="six wide column">

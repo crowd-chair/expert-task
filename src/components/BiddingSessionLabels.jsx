@@ -41,20 +41,23 @@ class BiddingSessionLabels extends Component {
     const ids = biddings.map(b => b.id);
     return this.props.connectDropTarget(
       <div className={`ui segment session-frame dropzone ${hoverClass}`}>
-        {sessionNames.filterNot(b => ids.includes(b.id)).map(sessionName => {
-          const labelKey = `labels-${sessionName.id}`;
-          return (
-            <DraggableSessionLabel
-              key={labelKey}
-              sessionName={sessionName}
-              bidding={{
-                id: sessionName.id,
-                rank: null,
-              }}
-              from="labels"
-            />
-          );
-        })}
+        {sessionNames
+          .filterNot(b => ids.includes(b.id))
+          .filterNot(b => b.noBidding)
+          .map(sessionName => {
+            const labelKey = `labels-${sessionName.id}`;
+            return (
+              <DraggableSessionLabel
+                key={labelKey}
+                sessionName={sessionName}
+                bidding={{
+                  id: sessionName.id,
+                  rank: null,
+                }}
+                from="labels"
+              />
+            );
+          })}
       </div>
     );
   }

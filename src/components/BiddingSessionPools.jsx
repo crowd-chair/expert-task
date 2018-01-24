@@ -7,7 +7,7 @@ import { sessionNames } from "../libs/load_sessions_info";
 
 class BiddingSessionPools extends Component {
   state = {
-    maxBiddings: 7,
+    maxBiddings: 5,
   };
   render() {
     const { biddings } = this.props;
