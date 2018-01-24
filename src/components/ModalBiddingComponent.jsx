@@ -135,6 +135,8 @@ class ModalBiddingComponent extends Component {
       article: articleId,
       bidding: biddings,
     });
+
+    this.props.onSaveForGroup();
   };
 
   onCancel = () => {
@@ -153,21 +155,22 @@ class ModalBiddingComponent extends Component {
       <Modal
         className="bidding modal"
         dimmer={true}
-        closeOnDimmerClick={false}
+        closeOnDimmerClick={true}
         open={open}
         onOpen={this.onOpen}
         onClose={this.onClose}
         trigger={<Icon className="trigger-button" onClick={this.showBiddingModal} name="arrow right" size="large" />}
+        size="fullscreen"
       >
         <Modal.Header>投票のセッション希望の修正</Modal.Header>
-        <Modal.Content scrolling>
+        <Modal.Content>
           <BiddingComponent biddings={biddings} article={this.props.article} onMove={this.onMove} />
         </Modal.Content>
         <Modal.Actions>
           <Button color="black" onClick={this.onCancel}>
             キャンセル
           </Button>
-          <Button positive icon="checkmark" labelPosition="right" content="回答する" onClick={this.onSave} />
+          <Button positive icon="checkmark" labelPosition="right" content="保存する" onClick={this.onSave} />
         </Modal.Actions>
       </Modal>
     );
@@ -177,6 +180,7 @@ class ModalBiddingComponent extends Component {
 ModalBiddingComponent.propTypes = {
   article: PropTypes.object,
   biddings: PropTypes.object,
+  onSaveForGroup: PropTypes.func,
 };
 
 const mapStateToProps = (state, props) => {

@@ -11,6 +11,6 @@
 
 .trigger-button {
   position: absolute;
-  margin: auto 0;
-  right: 0;
+  top: 2px;
+  right: -4px;
 }

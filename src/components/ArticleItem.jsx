@@ -15,6 +15,7 @@ class ArticleItem extends Component {
     groupSizeMax: 3,
     group: 0,
     noMatching: false,
+    bidding: false,
   };
 
   componentWillMount() {
@@ -27,6 +28,9 @@ class ArticleItem extends Component {
   }
 
   getColors = index => {
+    if (index < 0) {
+      return "grey";
+    }
     const colorMaps = [
       null,
       "orange",
@@ -57,6 +61,9 @@ class ArticleItem extends Component {
     if (this.state.noMatching) {
       return;
     }
+    if (this.state.bidding) {
+      return;
+    }
     let nextColorIndex = this.state.group + 1;
     if (nextColorIndex === this.state.groupSizeMax + 1) {
       nextColorIndex = 0;
@@ -81,6 +88,16 @@ class ArticleItem extends Component {
     this.setState(nextState);
   };
 
+  onBidding = () => {
+    const nextState = {
+      ...this.state,
+      group: -1,
+      bidding: true,
+    };
+    this.addOrUpdateCorrection(nextState);
+    this.setState(nextState);
+  };
+
   render() {
     const { article, group, noMatching } = this.state;
     const decorationLabel = noMatching ? { textDecoration: "line-through" } : [];
@@ -93,7 +110,7 @@ class ArticleItem extends Component {
           style={decorationLabel}
         >
           {article.name}
-          <ModalBiddingComponent article={article} />
+          <ModalBiddingComponent article={article} onSaveForGroup={this.onBidding} />
         </Label>
       </div>
     );

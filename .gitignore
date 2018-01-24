@@ -22,3 +22,6 @@ yarn-error.log*
 
 sessions.json
 /deploy
+
+**/data
+/parse_data

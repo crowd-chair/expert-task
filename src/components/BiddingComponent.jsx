@@ -15,9 +15,6 @@ class BiddingComponent extends Component {
     return (
       <div className="bidding task page">
         <div className="ui container main">
-          <div className="question header">
-            <p>以下の投稿内容を読み、設問に答えてください</p>
-          </div>
           <div className="ui segment">
             <div className="ui top attached label">投稿内容</div>
             <div className="content">
@@ -45,8 +42,8 @@ class BiddingComponent extends Component {
                 セッションリストの中から発表投稿に関連するセッションを、関連度の高いものから順に
                 ドラッグ&ドロップで入れてください。 <br />
                 <b>
-                  できるだけ全ての欄にセッションを入れてください．どうしても入れられない場合のみ空欄にしてください．
-                  タスクが終了した場合「回答する」を押してください．
+                  できるだけ多くの欄にセッションを入れてください．
+                  タスクが終了した場合，「保存する」を押してください．保存せずに戻る場合は「キャンセル」を押してください．
                 </b>
               </p>
             </div>
