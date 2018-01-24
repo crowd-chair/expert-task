@@ -14,7 +14,7 @@ class App extends Component {
       <Provider store={store}>
         <div className="App">
           <div className="sessions-component">
-            {/* <QuestionComponent /> */}
+            <QuestionComponent />
             <SessionsComponent />
             <ManageButtons />
           </div>
