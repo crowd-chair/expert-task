@@ -6,7 +6,7 @@ import "./ArticleList.css";
 
 class ArticleList extends Component {
   state = {
-    showArticles: false,
+    showArticles: true,
   };
 
   toggle = () => {
