@@ -6,6 +6,7 @@ import { correctionActions } from "../redux/modules/correction";
 import { Correction } from "../redux/models";
 import { Label, Icon } from "semantic-ui-react";
 import "./ArticleItem.css";
+import ModalBiddingComponent from "./ModalBiddingComponent";
 
 class ArticleItem extends Component {
   state = {
@@ -14,6 +15,7 @@ class ArticleItem extends Component {
     groupSizeMax: 3,
     group: 0,
     noMatching: false,
+    bidding: false,
   };
 
   componentWillMount() {
@@ -26,6 +28,9 @@ class ArticleItem extends Component {
   }
 
   getColors = index => {
+    if (index < 0) {
+      return "grey";
+    }
     const colorMaps = [
       null,
       "orange",
@@ -56,6 +61,9 @@ class ArticleItem extends Component {
     if (this.state.noMatching) {
       return;
     }
+    if (this.state.bidding) {
+      return;
+    }
     let nextColorIndex = this.state.group + 1;
     if (nextColorIndex === this.state.groupSizeMax + 1) {
       nextColorIndex = 0;
@@ -80,6 +88,16 @@ class ArticleItem extends Component {
     this.setState(nextState);
   };
 
+  onBidding = () => {
+    const nextState = {
+      ...this.state,
+      group: -1,
+      bidding: true,
+    };
+    this.addOrUpdateCorrection(nextState);
+    this.setState(nextState);
+  };
+
   render() {
     const { article, group, noMatching } = this.state;
     const decorationLabel = noMatching ? { textDecoration: "line-through" } : [];
@@ -92,7 +110,7 @@ class ArticleItem extends Component {
           style={decorationLabel}
         >
           {article.name}
-          <Icon className="cancel-button" onClick={this.toggleNoMatching} name="delete" size="small" />
+          <ModalBiddingComponent article={article} onSaveForGroup={this.onBidding} />
         </Label>
       </div>
     );

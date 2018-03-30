@@ -7,6 +7,7 @@ const CorrectionRecord = Record({
   article: new Article(),
   group: 0,
   noMatching: false,
+  bidding: false,
 });
 
 export default class Correction extends CorrectionRecord {
@@ -15,5 +16,6 @@ export default class Correction extends CorrectionRecord {
     article: this.article.id,
     group: this.group,
     noMatching: this.noMatching,
+    bidding: this.bidding,
   });
 }

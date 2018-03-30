@@ -12,6 +12,8 @@ const randomstr = function(length) {
 };
 
 export const submit = corrections => {
+  console.log(corrections.biddings);
+
   const stringifyCorrections = JSON.stringify(corrections);
   let $uid = localStorage.user;
   if (!$uid) {

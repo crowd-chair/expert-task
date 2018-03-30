@@ -1,0 +1,53 @@
+[draggable] {
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+.bidding.task .page {
+  margin: 30px;
+}
+
+.bidding.task .content {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.bidding.task section {
+  margin-top: 20px;
+}
+
+.bidding.task .sessions.section {
+  margin-top: 30px;
+}
+
+.bidding.task .question.header {
+  margin-bottom: 20px;
+}
+
+.bidding.task .ui.session.label {
+  margin-top: 6px;
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.bidding.task .ui.rank.label {
+  background-color: #ffffff !important;
+}
+
+.bidding.task .ui.rank.new-label {
+  background-color: #aaaaaa !important;
+}
+
+.bidding.task .rank {
+  padding-right: 6px;
+}
+
+.bidding.task .hovering {
+  background-color: #d3def1 !important;
+}
+
+.bidding.task .answering.section {
+  margin-top: 10px;
+}

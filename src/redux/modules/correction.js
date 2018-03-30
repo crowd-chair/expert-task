@@ -3,12 +3,14 @@ import { List } from "immutable";
 
 const actions = {
   addCorrection: createAction("ADD_CORRECTION"),
+  addBidding: createAction("ADD_BIDDING"),
 };
 
 export const correctionActions = actions;
 
 const initialState = {
   corrections: List(),
+  biddings: List(),
 };
 
 export default handleActions(
@@ -29,6 +31,28 @@ export default handleActions(
       return {
         ...state,
         corrections: corrections,
+      };
+    },
+    [actions.addBidding]: (state, action) => {
+      const { article, bidding } = action.payload;
+      const index = state.biddings.findIndex(b => b.article === article);
+      if (index === -1) {
+        // Not Found
+        return {
+          ...state,
+          biddings: state.biddings.push({
+            article: article,
+            bidding: bidding,
+          }),
+        };
+      }
+      const biddings = state.biddings.update(index, b => ({
+        article: b.article,
+        bidding: bidding,
+      }));
+      return {
+        ...state,
+        biddings: biddings,
       };
     },
   },
