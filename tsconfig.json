@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "esnext",
+    "lib": ["dom", "es2017"],
+    "allowJs": true,
+    "jsx": "react",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "typeRoots": ["./src/types"],
+    "types": ["webpack-env", "jest"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": false,
+    "allowSyntheticDefaultImports": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
