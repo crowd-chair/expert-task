@@ -6,8 +6,14 @@ const envConfig = {
 };
 
 const config = {
-  presets: [["@babel/preset-env", envConfig], "@babel/preset-stage-3", "@babel/preset-react"],
+  presets: [
+    ["@babel/preset-env", envConfig],
+    "@babel/preset-stage-3",
+    "@babel/preset-react",
+    "@babel/preset-typescript",
+  ],
   plugins: [
+    // [TODO]
     // "react-hot-loader/babel",
     // [
     //   "react-css-modules",
@@ -22,7 +28,7 @@ const config = {
     //     handleMissingStyleName: "warn"
     //   }
     // ],
-    // ["babel-plugin-styled-components", { ssr: true }]
+    "babel-plugin-styled-components",
     "babel-plugin-transform-decorators-legacy",
   ].filter(Boolean),
 };
